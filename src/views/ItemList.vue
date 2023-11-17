@@ -1,13 +1,5 @@
 <template>
-  <!-- <div>
-    <h2>Item List</h2>
-    <ul>
-      <li v-for="(item, index) in items" :key="index">
-        {{ item.name + item.surName + item.address + item.exp + item.age }}
-        <button @click="editItem(index)">Edit</button>
-      </li>
-    </ul>
-  </div> -->
+  <!-- Используется компонент DataTable для отображения списка сотрудников -->
   <DataTable
     ref="dt"
     :value="items"
@@ -15,12 +7,14 @@
     :rows="10"
     :filters="filters"
     class="mt-5">
+    <!-- Шапка таблицы с заголовком "Список сотрудников" -->
     <template #header>
       <div
         class="flex flex-wrap gap-2 align-items-center justify-content-between">
         <h4 class="m-0">Список сотрудников</h4>
       </div>
     </template>
+    <!-- Колонки таблицы с соответствующими полями для отображения данных сотрудников -->
     <Column
       field="name"
       header="Имя"
@@ -40,6 +34,7 @@
       style="min-width: 10rem"></Column>
     <Column field="address" header="Адрес" sortable style="min-width: 12rem">
     </Column>
+    <!-- Колонка с кнопкой редактирования -->
     <Column :exportable="false" style="min-width: 8rem">
       <template #body="slotProps">
         <Button
@@ -58,6 +53,7 @@ export default {
   data() {
     return {
       columns: [
+        // Определение колонок таблицы
         { field: "name", header: "Имя" },
         { field: "surname", header: "Фамилия" },
         { field: "age", header: "Возраст" },
@@ -67,11 +63,13 @@ export default {
     };
   },
   computed: {
+    // Получение данных сотрудников из хранилища Vuex
     items() {
       return this.$store.getters.getItems;
     },
   },
   methods: {
+    // Метод для перехода к странице редактирования сотрудника
     editItem(index) {
       this.$router.push({ path: `/edit/${index}` });
     },
