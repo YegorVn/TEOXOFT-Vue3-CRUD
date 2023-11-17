@@ -1,4 +1,4 @@
-# CRUD
+# TEOXOFT-Vue3-CRUD
 
 ## Project setup
 ```
