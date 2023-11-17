@@ -1,4 +1,4 @@
-# crud
+# CRUD
 
 ## Project setup
 ```
